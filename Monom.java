@@ -1,15 +1,15 @@
 
 public class Monom implements Comparable<Monom> {
-	private int coef;
+	private float coef;
 	private int grad;
 	boolean parcurs = false;
 
-	Monom(int c, int g) {
+	Monom(float c, int g) {
 		coef = c;
 		grad = g;
 	}
 
-	public void setCoef(int c) {
+	public void setCoef(float c) {
 		coef = c;
 	}
 
@@ -21,29 +21,56 @@ public class Monom implements Comparable<Monom> {
 		return this.grad;
 	}
 
-	public int getCoefMonom() {
+	public float getCoefMonom() {
 		return this.coef;
+	}
+
+	public String toStringMonom() {
+		String s = " ";
+		if (this.coef == 0) {
+			s = "";
+		} else if (this.grad == 0) {
+			s = s + Float.toString(coef);
+		} else if (this.grad == 1) {
+			if (coef == 1) {
+				s = s + "X^" + Integer.toString(grad);
+			} else {
+				s = s + Float.toString(coef) + "X";
+			}
+		} else if (coef == 1) {
+			s = s + "X^" + Integer.toString(grad);
+		} else if (coef == -1) {
+			s = s + "-X^" + Integer.toString(grad);
+		} else {
+			s = s + Float.toString(coef) + "X^" + Integer.toString(grad);
+		}
+		return s;
 	}
 
 	public String afisMonom() {
 		String s = " ";
-		if(this.coef == 0) {
-			System.out.print("");
-		}
-		else if (this.grad == 0) {
-			s = s + Integer.toString(coef);
+		if (this.coef == 0) {
+			System.out.print("0");
+			s = " 0";
+		} else if (this.grad == 0) {
+			s = s + Float.toString(coef);
 			System.out.print(coef);
-		}
-		else if(this.grad == 1) {
-			s = s + Integer.toString(coef) + "X";
-			System.out.print(coef + "X");
-		}
-		else if (coef == 1) {
-			s = s + "X" + Integer.toString(grad);
+		} else if (this.grad == 1) {
+			if (coef == 1) {
+				s = s + "X^" + Integer.toString(grad);
+				System.out.print("X^" + grad);
+			} else {
+				s = s + Float.toString(coef) + "X";
+				System.out.print(coef + "X");
+			}
+		} else if (coef == 1) {
+			s = s + "X^" + Integer.toString(grad);
 			System.out.print("X^" + grad);
-		}
-		else {
-			s = s + Integer.toString(coef) + "X^" + Integer.toString(grad);
+		} else if (coef == -1) {
+			s = s + "-X^" + Integer.toString(grad);
+			System.out.print("-X^" + grad);
+		} else {
+			s = s + Float.toString(coef) + "X^" + Integer.toString(grad);
 			System.out.print(coef + "X^" + grad);
 		}
 		return s;
